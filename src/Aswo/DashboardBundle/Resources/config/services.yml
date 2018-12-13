@@ -1,0 +1,4 @@
+services:
+#    aswo_dashboard.example:
+#        class: Aswo\DashboardBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

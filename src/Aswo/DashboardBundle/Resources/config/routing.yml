@@ -1,0 +1,61 @@
+aswo_dashboard_connexion:
+    path:     /Connexion
+    defaults: { _controller: AswoDashboardBundle:Default:connexion }
+
+aswo_dashboard_homepage:
+    path:     /
+    defaults: { _controller: AswoDashboardBundle:Default:index }
+
+aswo_dashboard_accueil:
+    path:     /Accueil
+    defaults: { _controller: AswoDashboardBundle:Default:accueil }
+
+aswo_dashboard_intranet:
+    path:     /Intranet
+    defaults: { _controller: AswoDashboardBundle:Default:intranet }
+
+aswo_dashboard_serveurs:
+    path:     /Serveurs
+    defaults: { _controller: AswoDashboardBundle:Default:serveurs }
+
+aswo_dashboard_inventaire:
+    path:     /Inventaire
+    defaults: { _controller: AswoDashboardBundle:Default:inventaire }
+
+aswo_dashboard_logsscans:
+    path:     /LogsScans
+    defaults: { _controller: AswoDashboardBundle:Default:logsscans }
+
+aswo_dashboard_logsprint:
+    path:     /LogsPrint
+    defaults: { _controller: AswoDashboardBundle:Default:logsprint }
+
+aswo_dashboard_utilisateurs:
+    path:     /Utilisateurs
+    defaults: { _controller: AswoDashboardBundle:Default:utilisateurs }
+
+aswo_dashboard_plannings:
+    path:     /Plannings
+    defaults: { _controller: AswoDashboardBundle:Default:plannings }
+
+aswo_dashboard_informations:
+    path:     /Informations
+    defaults: { _controller: AswoDashboardBundle:Default:informations }
+
+aswo_dashboard_gestionreseau:
+    path:     /GestionReseau
+    defaults: { _controller: AswoDashboardBundle:Default:gestionreseau }
+
+aswo_dashboard_scansaswo:
+    path:     /ScansAswo
+    defaults: { _controller: AswoDashboardBundle:Default:scansaswo }
+
+aswo_dashboard_profil:
+    path:     /Profil
+    defaults: { _controller: AswoDashboardBundle:Default:profil }
+
+aswo_dashboard_settings:
+    path:     /Settings
+    defaults: { _controller: AswoDashboardBundle:Default:settings }
+
+
