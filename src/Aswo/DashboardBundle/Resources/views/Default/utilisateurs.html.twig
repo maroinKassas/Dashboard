@@ -1,0 +1,81 @@
+{% extends "@AswoDashboard/Default/index.html.twig" %}
+
+{% block bodyTitle %}
+  	Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<div class="col-lg-12">
+		<div class="row text-center">
+			<h2> Liste des Membres </h2>
+		</div>
+	</div>
+
+	<div class="col-lg-12">
+		<div class="row text-center">
+			<h2> Créer un Membre </h2>
+		</div>
+
+		<div>
+			<label for="firstname" class="col-md-2">
+				Nom :
+			</label>
+
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="firstname" >
+			</div>
+
+			<div class="col-md-1">
+				<i class="fa fa-lock fa-2x"></i>
+			</div>
+		</div>
+
+		<div>
+			<label for="lastname" class="col-md-2">
+				Prénom :
+			</label>
+
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="lastname" >
+			</div>
+
+			<div class="col-md-1">
+				<i class="fa fa-lock fa-2x"></i>
+			</div>
+		</div>
+
+		<div>
+			<label for="emailaddress" class="col-md-2">
+				Adresse Email :
+			</label>
+
+			<div class="col-md-9">
+				<input type="email" class="form-control" id="emailaddress" >
+			</div>
+
+			<div class="col-md-1">
+				<i class="fa fa-lock fa-2x"></i>
+			</div>
+		</div>
+
+		<div>
+			<label for="password" class="col-md-2">
+				Mot de passe :
+			</label>
+
+			<div class="col-md-9">
+				<input type="password" class="form-control" id="password" >
+			</div>
+
+			<div class="col-md-1">
+				<i class="fa fa-lock fa-2x"></i>
+			</div>
+		</div>
+
+		<div class="col-md-10">
+			<button type="submit" class="btn btn-info">
+				Inscription
+			</button>
+		</div>
+	</div>
+{% endblock %}

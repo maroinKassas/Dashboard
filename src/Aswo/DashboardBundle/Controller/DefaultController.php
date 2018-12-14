@@ -47,9 +47,9 @@ class DefaultController extends Controller
         return $this->render('@AswoDashboard/Default/logsprint.html.twig');
     }
 
-    public function utilisateurAction()
+    public function utilisateursAction()
     {
-        return $this->render('@AswoDashboard/Default/utilisateur.html.twig');
+        return $this->render('@AswoDashboard/Default/utilisateurs.html.twig');
     }
 
     public function planningsAction()

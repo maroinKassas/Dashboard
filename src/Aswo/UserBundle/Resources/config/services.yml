@@ -1,0 +1,4 @@
+services:
+#    aswo_user.example:
+#        class: Aswo\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

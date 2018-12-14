@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-			"Aswo\\DashboardBundle\\": "src/Aswo/DashboardBundle"
+			"Aswo\\DashboardBundle\\": "src/Aswo/DashboardBundle",
+            "Aswo\\UserBundle\\": "src/Aswo/UserBundle"
         },
         "classmap": [
             "app/AppKernel.php",

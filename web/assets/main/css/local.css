@@ -6,6 +6,11 @@ html {
 }
 body {
   margin: 0;
+  font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #BDBDBD;
+  background-color: #060606;
 }
 article,
 aside,
@@ -101,6 +106,11 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
+
+input{
+  margin-bottom:20px!important;
+}
+
 button,
 input,
 optgroup,
@@ -3042,6 +3052,9 @@ input[type="button"].btn-block {
   color: #ffffff;
   background-color: #2a9fd6;
 }
+.dropdown-menu>li>a:hover {
+  background-color: #e4e4e4!important;
+}
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
@@ -3814,8 +3827,29 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-top: 15px;
     padding-bottom: 15px;
   }
+
   .navbar-nav.navbar-right:last-child {
-    margin-right: -15px;
+    margin-right: 0px;
+    height: 66px;
+  }
+
+  .applicatifs-dropdown, .user-dropdown {
+    height: 66px;
+  }
+
+  .applicatifs-dropdown:hover, .user-dropdown:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav>.applicatifs-dropdown>a, .navbar-nav>.user-dropdown>a{
+    padding-top: 20px; 
+    padding-bottom: 26px; 
+    font-size: 16px;
+  }
+
+  .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus{
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 66px;
   }
 }
 @media (min-width: 768px) {
@@ -4028,10 +4062,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > li > a {
   color: #BDBDBD;
 }
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color: transparent;
+.navbar-inverse .navbar-nav > li > a:hover{
+  background-color: rgba(0, 0, 0, 0.1)!important;
+}
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -4048,16 +4081,27 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-toggle {
   border-color: #333333;
 }
-.navbar-inverse .navbar-toggle:hover,
+
+.navbar-inverse .navbar-toggle:hover {
+  border-color: #ffffff;
+}
+
+.navbar-toggle:hover .icon-bar{
+  background-color : #ffffff!important;
+}
+
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333333;
+  border-color: #ffffff;
 }
-.navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #ffffff;
+
+.navbar-toggle:focus .icon-bar{
+  background-color : #ffffff!important;
 }
+
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: #ffc107;
+  background-color: #ffc107;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
@@ -5954,7 +5998,7 @@ table.tablesorter thead tr th:hover {
 	width: 225px;
 	position: fixed;
   left:0;
-	top: 50px;
+	top: 66px;
 	height: 100%;
 	border-radius: 0;
 	border: none;
