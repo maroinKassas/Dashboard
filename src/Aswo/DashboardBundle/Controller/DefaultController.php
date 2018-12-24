@@ -7,11 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-     public function connexionAction()
-    {
-        return $this->render('@AswoDashboard/Default/connexion.html.twig');
-    }
-
     public function indexAction()
     {
         return $this->render('@AswoDashboard/Default/index.html.twig');

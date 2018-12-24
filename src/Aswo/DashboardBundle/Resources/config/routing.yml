@@ -1,7 +1,3 @@
-aswo_dashboard_connexion:
-    path:     /Connexion
-    defaults: { _controller: AswoDashboardBundle:Default:connexion }
-
 aswo_dashboard_homepage:
     path:     /
     defaults: { _controller: AswoDashboardBundle:Default:index }

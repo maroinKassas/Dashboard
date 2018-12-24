@@ -1,3 +1,0 @@
-aswo_user_homepage:
-    path:     /Connexion
-    defaults: { _controller: AswoUserBundle:Default:index }

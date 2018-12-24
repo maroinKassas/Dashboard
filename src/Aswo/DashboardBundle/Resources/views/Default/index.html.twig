@@ -79,7 +79,10 @@
         </div>
       
         <div class="row">
+          {#Bonjour {{ app.user.username }} - {{ app.user.email }}#}
+          
           {% block body %}
+
           {% endblock %}
         </div>
       </div>

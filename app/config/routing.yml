@@ -1,7 +1,3 @@
-aswo_user:
-    resource: "@AswoUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 aswo_dashboard:
     resource: "@AswoDashboardBundle/Resources/config/routing.yml"
     prefix:   /
@@ -11,11 +7,11 @@ app:
     type: annotation
     
 login:
-    pattern:   /login
+    path:   /Login
     defaults:  { _controller: AswoUserBundle:Security:login }
 
 login_check:
-    pattern:   /login_check
+    path:   /Login_check
 
 logout:
-    pattern:   /logout
+    path:   /Logout
