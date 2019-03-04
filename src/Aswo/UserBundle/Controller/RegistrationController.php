@@ -2,9 +2,7 @@
 
 namespace Aswo\UserBundle\Controller;
 
-
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
-
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -20,7 +18,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 
 class RegistrationController extends BaseController
 {
@@ -39,6 +36,8 @@ class RegistrationController extends BaseController
 
     public function registerAction(Request $request)
     {
+        $messageSuccess = '';
+
         $user = $this->userManager->createUser();
         $user->setEnabled(true);
 
@@ -60,15 +59,27 @@ class RegistrationController extends BaseController
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $this->userManager->updateUser($user);
+                
+                $transport =  \Swift_SmtpTransport::newInstance($this->getParameter('mailer_host'), 465, 'ssl')
+                    ->setUsername($this->getParameter('mailer_user'))
+                    ->setPassword($this->getParameter('mailer_password'));
+                
+                $mailer = \Swift_Mailer::newInstance($transport);
 
-                if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
-                    $response = new RedirectResponse($url);
-                }
+                $messageEmail = \Swift_Message::newInstance('Dashboard Aswo - Identifiant de connexion')
+                    ->setFrom($this->getParameter('mailer_user'))
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'EmailTemplate/infosAccount.html.twig',
+                            ['username' => $user->getUsername()]
+                        ),
+                        'text/html'
+                    );
 
-                $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+                $mailer->send($messageEmail);
 
-                return $response;
+                $messageSuccess = 'L\'utilisateur '.$user->getUsername().' a bien été inscrit ! un mail a été envoyé à '.$user->getEmail().' !';
             }
 
             $event = new FormEvent($form, $request);
@@ -80,8 +91,12 @@ class RegistrationController extends BaseController
         }
 
         $users = $this->userManager->findUsers();
-
-        return $this->render('@FOSUser/Registration/register.html.twig', array('form' => $form->createView(), 'users' => $users));
+        
+        return $this->render('@FOSUser/Registration/register.html.twig', array(
+            'form' => $form->createView(), 
+            'users' => $users,
+            'message' => $messageSuccess
+        ));
     }
 
     /**

@@ -12,6 +12,30 @@
 {% block body %}
 	<div class="col-lg-12">
 		<div class="row text-center">
+            <div class="slide-bottom">
+                {% if message is defined and message != ''%}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong> {{ message }} </strong> 
+                    </div>
+                {% endif %}
+
+                {% if form is defined and form_errors(form.username) != null %}
+                    
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        Le nom d'utilisateur <strong> {{ form.vars.value.username }} </strong> est déjà utilisé !
+                    </div>
+                {% endif %}
+
+                {% if form is defined and form_errors(form.email) != null %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        L'email <strong> {{ form.vars.value.email }} </strong> est déjà utilisé !
+                    </div>
+                {% endif %}
+            </div>
+
 			<h2> Liste des Membres </h2>
             <div id="shieldui-grid1" role="grid" aria-readonly="true" class="sui-grid sui-grid-core">
                 <div class="sui-gridheader">
@@ -28,7 +52,7 @@
                                     <a href="#" class="sui-link sui-unselectable" unselectable="on" tabindex="-1">Role</a>
                                 </th>
                                 <th data-field="Percent" role="columnheader" tabindex="-1" class="sui-headercell">
-                                    <a href="#" class="sui-link sui-unselectable" unselectable="on" tabindex="-1"></a>
+                                    <div href="#" class="sui-link sui-unselectable" unselectable="on" tabindex="-1"></div>
                                 </th>
                             </tr>
                         </thead>
@@ -41,10 +65,19 @@
                                 <tr class="sui-row" role="row">
                                     <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.username }}</td>
                                     <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.email }}</td>
-                                    <td role="gridcell" tabindex="-1" class="sui-cell">{% for role in user.roles %}{{ role }}, {% endfor %}</td>
                                     <td role="gridcell" tabindex="-1" class="sui-cell">
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                        {% for role in user.roles %}
+                                            {% if role == 'ROLE_SUPER_ADMIN' %} 
+                                                Admin
+                                            {% endif %}
+                                            {% if role == 'ROLE_DEFAULT' %}
+                                                Utilisateur
+                                            {% endif %}
+                                            {% set break = true %}
+                                        {% endfor %}</td>
+                                    <td role="gridcell" tabindex="-1" class="sui-cell">
+                                        <a type="button" href="/" class="btn btn-warning" style="text-decoration:none;"> Modifier </a>
+                                        <a type="button" href="{{ path("aswo_userbundle_delete", {'userName': user.username }) }}" class="btn btn-danger" style="text-decoration:none;"> Supprimer </a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -56,9 +89,11 @@
 	</div>
 
 	<div class="col-lg-12">
+    
 		<div class="row text-center">
 			<h2> Créer un Membre </h2>
 		</div>
+
         <form class="login100-form validate-form" action="{{ path("fos_user_registration_register") }}" method="post">  
             <div>
                 <label for="emailaddress" class="col-md-2">
@@ -94,7 +129,7 @@
                 </label>
 
                 <div class="col-md-9">
-                    <input type="password" class="form-control" name="fos_user_registration_form[plainPassword][first]" required="required">
+                    <input id="passwordFirst" type="password" class="form-control" name="fos_user_registration_form[plainPassword][first]" required="required">
                 </div>
 
                 <div class="col-md-1">
@@ -108,11 +143,18 @@
                 </label>
 
                 <div class="col-md-9">
-                    <input type="password" class="form-control" name="fos_user_registration_form[plainPassword][second]" required="required">
+                    <input id="passwordSecond" type="password" class="form-control" name="fos_user_registration_form[plainPassword][second]" required="required">
                 </div>
 
                 <div class="col-md-1">
                     <i class="fa fa-lock fa-2x"></i>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-md-2"></div>
+                <div class="col-md-9 center">
+                    <input type="button" class="btn btn-success" onclick="generateRandomPassword();" value="Générer un mot de passe aléatoire"></input>
                 </div>
             </div>
 
@@ -122,7 +164,6 @@
                 </label>
 
                 <div class="col-md-9">
-                    <div class="col-md-3"></div>
                     <div class="col-md-1">
                         <input type="radio" class="form-control" name="fos_user_registration_form[roles][0]" required="required" value="ROLE_DEFAULT">
                     </div>
@@ -145,11 +186,26 @@
             <input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="{{csrf_token('registration')}}">
 
             <div class="col-md-10">
-                <button type="submit" class="btn btn-info">
+                <div class="col-md-5"></div>
+                <button type="submit" class="btn btn-info col-md-5">
                     Inscription
                 </button>
             </div>
         </form>
 	</div>
+
+    <script type="text/javascript">
+        function generateRandomPassword() {
+            var char = 'azertyuiopqsdfghjklmwxcvbn,;:!?./§123456789AZERTYUIOPQSDFGHJKLMWXCVBN,;:!?./§';
+            var password = '';
+            var size = 6;
+            for(i = 0 ; i < size ; i++){
+                var random = Math.round(Math.random()*char.length);
+                password += char.substring(random, random + 1);
+            }
+            document.getElementById('passwordFirst').setAttribute("value", password);
+            document.getElementById('passwordSecond').setAttribute("value", password);
+        }
+    </script>
 
 {% endblock %}

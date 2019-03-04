@@ -79,8 +79,11 @@ fos_user:
     firewall_name: main                      
     user_class: Aswo\UserBundle\Entity\User 
     from_email:
-        address: "noreply@dashboard.com"
+        address: "noreply@aswodashboard.com"
         sender_name: "No Reply"
     registration:
         form:
             type: Aswo\UserBundle\Form\RegistrationType
+    profile:
+        form:
+            type: Aswo\UserBundle\Form\ProfileType

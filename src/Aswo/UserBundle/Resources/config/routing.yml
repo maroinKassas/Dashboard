@@ -1,0 +1,5 @@
+aswo_userbundle_delete:
+    path:     /delete/
+    defaults: { _controller: AswoUserBundle:UserManager:deleteUser }
+    requirements:
+        methods: "GET"

@@ -1,0 +1,87 @@
+{% extends "@AswoUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}
+  	Profil
+{% endblock %}
+
+{% block bodyTitle %}
+  	Profil
+{% endblock %}
+
+{% block body %}
+    <div class="col-lg-12">
+		<div class="row text-center">
+            <div class="slide-bottom">
+                {% if message is defined and message != ''%}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong> {{ message }} </strong> 
+                    </div>
+                {% endif %}
+
+                {% if form is defined and form_errors(form.current_password) != null %}
+                    
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong> Le mot de passe actuel est invalide. </strong>
+                    </div>
+                {% endif %}
+            </div>
+
+            <form name="fos_user_profile_form" method="post" action="/Dashboard/web/app_dev.php/profile/edit" class="fos_user_profile_edit">
+                <div id="fos_user_profile_form">
+                    <div>
+                        <label for="emailaddress" class="col-md-3">
+                            Identifiant : 
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control"  value="{{ form.vars.value.username }}" disabled>
+                            <input type="hidden" class="form-control" name="fos_user_profile_form[username]" value="{{ form.vars.value.username }}" >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="emailaddress" class="col-md-3">
+                            Adresse Email :
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" type="email" name="fos_user_profile_form[email]" required="required" value="{{ form.vars.value.email }}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="mdp" class="col-md-3">
+                            Nouveau mot de passe :
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="password" class="form-control" name="fos_user_profile_form[plainPassword]" >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="mdp" class="col-md-3">
+                            Mot de passe actuel :
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="password" class="form-control" name="fos_user_profile_form[current_password]" required="required">
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="fos_user_profile_form__token" name="fos_user_profile_form[_token]" value="{{csrf_token('profile')}}">
+                </div>
+
+                <div class="col-md-10">
+                    <div class="col-md-5"></div>
+                    <button type="submit" class="btn btn-info col-md-5">
+                        Mettre à jour
+                    </button>
+                </div>
+            </form> 
+        </div>
+    </div>   
+{% endblock body %}
