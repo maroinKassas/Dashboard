@@ -1,16 +1,11 @@
-{% extends "@AswoDashboard/Default/index.html.twig" %}
+{% extends "content.html.twig" %}
 
-{% block title %}
-  	Connexion
-{% endblock %}
-
-
-{% block bodyLogin %}
+{% block loginContent %}
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                {% block user_content %}
-                {% endblock user_content %}
+                {% block userContent %}
+                {% endblock userContent %}
                 <div class="login100-more" >
                     <img src="{{ asset('assets/connexion/images/imgDashboard.jpg') }}">
                 </div>
@@ -25,12 +20,6 @@
     <script src="{{ asset('assets/connexion/vendor/bootstrap/js/popper.js') }}"></script>
     <script src="{{ asset('assets/connexion/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/connexion/vendor/select2/select2.min.js') }}"></script>
-    <script>
-        $(".selection-2").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect1')
-        });
-    </script>
     <script src="{{ asset('assets/connexion/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('assets/connexion/vendor/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/connexion/vendor/countdowntime/countdowntime.js') }}"></script>

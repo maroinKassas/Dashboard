@@ -1,14 +1,10 @@
 aswo_dashboard:
     resource: "@AswoDashboardBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix: /
 
 aswo_user:
     resource: "@AswoUserBundle/Resources/config/routing.yml"
-    prefix:   /user
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    prefix: /user
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

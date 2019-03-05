@@ -1,0 +1,45 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+  	Accueil
+{% endblock %}
+
+{% block titleContent %}
+    Accueil
+{% endblock %}
+
+{% block content %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-info" style="font-weight:bold; color:#FFF">
+                    <i class="fa fa-commenting-o"></i> INFOS
+                </div>
+                <div class="card-body"></div>
+                <div class="card-footer small bg-info" style="color:#FFF">MAJ le 13/12/2018 à 15:34:02</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3" id="test">
+                <a href="http://fr-printsaswo.aswo.net/" target="_blank" style="text-decoration:none">
+                    <div class="card-header bg-danger" style="font-weight:bold; color:#FFF">
+                        <i class="fa fa-print"></i> LOGS PRINT
+                    </div>
+                </a>
+                <div class="card-body"></div>
+                <div class="card-footer small bg-danger " style="color:#FFF">MAJ le 13/12/2018 à 15:34:02</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <a href="http://fr-dashboardscanners.aswo.net" target="_blank" style="text-decoration:none">
+                    <div class="card-header bg-warning" style="font-weight:bold; color:#FFF">
+                        <i class="fa fa-barcode"></i> LOGS SCANS
+                    </div>
+                </a>
+                <div class="card-body" style="color:black"></div>
+                <div class="card-footer small bg-warning" style="color:#FFF">MAJ le 13/12/2018 à 15:34:02</div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'index.html.twig' %}
+
+{% block body %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('aswo_dashboard_homepage') }}"> Dashboard </a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul id="active" class="nav navbar-nav side-nav">
+                        <li class="selected"><a href="{{ path('aswo_dashboard_intranet') }}"><i class="fa fa-bullseye"></i> Intranet</a></li>
+                        <li><a href="{{ path('aswo_dashboard_serveurs') }}"><i class="fa fa-tasks"></i> Serveurs</a></li>
+                        <li><a href="{{ path('aswo_dashboard_inventaire') }}"><i class="fa fa-archive"></i> Inventaire</a></li>
+                        <li><a href="{{ path('aswo_dashboard_logsscans') }}"><i class="fa fa-barcode"></i> Logs Scans</a></li>
+                        <li><a href="{{ path('aswo_dashboard_logsprint') }}"><i class="fa fa-print"></i> Logs Print</a></li>
+
+                        {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-users"></i> Utilisateurs </a></li>
+                        {% endif %}
+
+                        <li><a href="{{ path('aswo_dashboard_plannings') }}"><i class="fa fa-calendar"></i> Plannings </a></li>
+                        <li><a href="{{ path('aswo_dashboard_informations') }}"><i class="fa fa-bell"></i> Informations </a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right navbar-user">
+                        <li class="dropdown applicatifs-dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i> Applicatifs <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('aswo_dashboard_gestionreseau') }}"> Gestion Reseau </a></li>
+                                <li><a href="{{ path('aswo_dashboard_scansaswo') }}"> Scans Aswo </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown user-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Profil</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>
+                            {% block titleContent %}
+                            {% endblock %}
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% block loginContent %}
+        {% endblock %}
+    {% endif %}
+{% endblock %}

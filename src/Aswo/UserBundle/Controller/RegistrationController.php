@@ -19,6 +19,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 class RegistrationController extends BaseController
 {
     protected $eventDispatcher;
@@ -34,6 +36,9 @@ class RegistrationController extends BaseController
         $this->tokenStorage = $tokenStorage;
     }
 
+    /**
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
     public function registerAction(Request $request)
     {
         $messageSuccess = '';
@@ -58,6 +63,7 @@ class RegistrationController extends BaseController
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+                $plainPassword = $user->getPlainPassword();
                 $this->userManager->updateUser($user);
                 
                 $transport =  \Swift_SmtpTransport::newInstance($this->getParameter('mailer_host'), 465, 'ssl')
@@ -71,8 +77,11 @@ class RegistrationController extends BaseController
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView(
-                            'EmailTemplate/infosAccount.html.twig',
-                            ['username' => $user->getUsername()]
+                            '@AswoUser/Registration/emailInfosAccount.html.twig',
+                            [
+                                'username' => $user->getUsername(),
+                                'plainPassword' => $plainPassword
+                            ]
                         ),
                         'text/html'
                     );

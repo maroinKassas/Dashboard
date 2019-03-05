@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <link href="{{ asset('assets/main/css/local.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/main/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/main/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+            <script src="{{ asset('assets/main/js/jquery-1.10.2.min.js') }}"></script>
+            <script src="{{ asset('assets/main/bootstrap/js/bootstrap.min.js') }}"></script>
+
+            <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+            <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
+
+            <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+            <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
+
+        {% else %}
+            <link href="{{ asset('assets/connexion/css/main.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/css/util.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/animsition/css/animsition.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/animate/animate.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('assets/connexion/images/icons/favicon.ico') }}" rel="icon" type="image/png" />
+            <link href="{{ asset('assets/connexion/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}" rel="stylesheet" type="text/css" />
+        {% endif %}
+
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

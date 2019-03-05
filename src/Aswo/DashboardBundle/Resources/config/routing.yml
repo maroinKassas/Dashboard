@@ -1,57 +1,44 @@
 aswo_dashboard_homepage:
     path:     /
-    defaults: { _controller: AswoDashboardBundle:Default:index }
-
-aswo_dashboard_accueil:
-    path:     /Accueil
-    defaults: { _controller: AswoDashboardBundle:Default:accueil }
+    defaults: { _controller: AswoDashboardBundle:Accueil:accueil }
 
 aswo_dashboard_intranet:
     path:     /Intranet
-    defaults: { _controller: AswoDashboardBundle:Default:intranet }
+    defaults: { _controller: AswoDashboardBundle:Intranet:intranet }
 
 aswo_dashboard_serveurs:
     path:     /Serveurs
-    defaults: { _controller: AswoDashboardBundle:Default:serveurs }
+    defaults: { _controller: AswoDashboardBundle:Serveurs:serveurs }
 
 aswo_dashboard_inventaire:
     path:     /Inventaire
-    defaults: { _controller: AswoDashboardBundle:Default:inventaire }
+    defaults: { _controller: AswoDashboardBundle:Inventaire:inventaire }
 
 aswo_dashboard_logsscans:
     path:     /LogsScans
-    defaults: { _controller: AswoDashboardBundle:Default:logsscans }
+    defaults: { _controller: AswoDashboardBundle:LogsScans:logsScans }
 
 aswo_dashboard_logsprint:
     path:     /LogsPrint
-    defaults: { _controller: AswoDashboardBundle:Default:logsprint }
+    defaults: { _controller: AswoDashboardBundle:LogsPrint:logsPrint }
 
 aswo_dashboard_utilisateurs:
     path:     /Utilisateurs
-    defaults: { _controller: AswoDashboardBundle:Default:utilisateurs }
+    defaults: { _controller: AswoDashboardBundle:Utilisateurs:utilisateurs }
 
 aswo_dashboard_plannings:
     path:     /Plannings
-    defaults: { _controller: AswoDashboardBundle:Default:plannings }
+    defaults: { _controller: AswoDashboardBundle:Plannings:plannings }
 
 aswo_dashboard_informations:
     path:     /Informations
-    defaults: { _controller: AswoDashboardBundle:Default:informations }
+    defaults: { _controller: AswoDashboardBundle:Informations:informations }
 
 aswo_dashboard_gestionreseau:
     path:     /GestionReseau
-    defaults: { _controller: AswoDashboardBundle:Default:gestionreseau }
+    defaults: { _controller: AswoDashboardBundle:GestionReseau:gestionReseau }
 
 aswo_dashboard_scansaswo:
     path:     /ScansAswo
-    defaults: { _controller: AswoDashboardBundle:Default:scansaswo }
-
-aswo_dashboard_profil:
-    path:     /Profil
-    defaults: { _controller: AswoDashboardBundle:Default:profil }
-
-aswo_dashboard_settings:
-    path:     /Settings
-    defaults: { _controller: AswoDashboardBundle:Default:settings }
-
+    defaults: { _controller: AswoDashboardBundle:ScansAswo:scansAswo }
 
