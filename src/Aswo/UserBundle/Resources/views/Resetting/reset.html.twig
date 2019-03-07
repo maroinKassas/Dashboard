@@ -1,5 +1,37 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "@AswoUser/layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Resetting/reset_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}
+  	Réinitialisation du mot de passe
+{% endblock %}
+
+{% block userContent %}
+    <form class="login100-form validate-form" action="{{ path('fos_user_resetting_reset', {'token': token}) }}" method="POST" style="padding-right: 55px;">          
+        {% if form_errors(form.plainPassword.first) != null %}
+            <span class="login100-form-title p-b-34 alert alert-danger alert-dismissible" style="height:70px;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" style="padding-top: 14px;">&times;</a>
+                <strong style="font-size: 12px;padding-left: 45px;"> Les deux mots de passe ne sont pas identiques ! </strong>
+            </span>
+        {% endif %}
+        
+        <span class="login100-form-title p-b-34">
+            Réinitialisation du mot de passe
+        </span>
+
+        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" style="width: 100%;">
+            <input id="first-name" class="input100" type="password" name="fos_user_resetting_form[plainPassword][first]" placeholder="Nouveau mot de passe" >
+                <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" style="width: 100%;">
+            <input id="first-name" class="input100" type="password" name="fos_user_resetting_form[plainPassword][second]" placeholder="Répéter le nouveau mot de passe" >
+                <span class="focus-input100"></span>
+        </div>
+        <input type="hidden" id="fos_user_resetting_form__token" name="fos_user_resetting_form[_token]" value="{{csrf_token('resetting')}}">
+        <div class="container-login100-form-btn">
+            <button class="login100-form-btn">
+                Réinitialiser mon mot de passe
+            </button>
+        </div>
+
+        <div class="w-full text-center p-t-27 p-b-239"></div>
+    </form>
+{% endblock %}

@@ -66,14 +66,17 @@ class RegistrationController extends BaseController
                 $plainPassword = $user->getPlainPassword();
                 $this->userManager->updateUser($user);
                 
-                $transport =  \Swift_SmtpTransport::newInstance($this->getParameter('mailer_host'), 465, 'ssl')
-                    ->setUsername($this->getParameter('mailer_user'))
+                $transport =  \Swift_SmtpTransport::newInstance
+                        (
+                            $this->getParameter('mailer_host'), $this->getParameter('mailer_port'), $this->getParameter('mailer_encryption')
+                        )
+                    ->setUsername($this->getParameter('mailer_username'))
                     ->setPassword($this->getParameter('mailer_password'));
                 
                 $mailer = \Swift_Mailer::newInstance($transport);
 
                 $messageEmail = \Swift_Message::newInstance('Dashboard Aswo - Identifiant de connexion')
-                    ->setFrom($this->getParameter('mailer_user'))
+                    ->setFrom($this->getParameter('mailer_username'))
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView(

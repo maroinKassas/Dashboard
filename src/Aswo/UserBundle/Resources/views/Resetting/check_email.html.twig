@@ -1,9 +1,23 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "@AswoUser/layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}
+  	Vous avez oublié votre mot de passe?
+{% endblock %}
 
-{% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-</p>
+{% block userContent %}
+    
+    <div class="login100-form validate-form">          
+        <span class="login100-form-title p-b-34">
+            Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+            Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les 2 heures.
+
+            Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+        </span>
+
+        <div class="w-full text-center p-t-27 p-b-239">
+            <a href="{{ path('fos_user_security_login') }}" class="txt2">
+                Se connecter
+            </a>
+        </div>
+    </div>
 {% endblock %}

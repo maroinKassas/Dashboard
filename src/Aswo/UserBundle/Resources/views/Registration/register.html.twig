@@ -20,7 +20,6 @@
                 {% endif %}
 
                 {% if form is defined and form_errors(form.username) != null %}
-                    
                     <div class="alert alert-danger alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         Le nom d'utilisateur <strong> {{ form.vars.value.username }} </strong> est déjà utilisé !

@@ -6,6 +6,13 @@
 
 {% block userContent %}
     <form class="login100-form validate-form" action="{{ path("fos_user_security_check") }}" method="post">          
+        {% if error is defined and error != null %}
+            <span class="login100-form-title p-b-34 alert alert-danger alert-dismissible" style="height:50px;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" style="padding-top: 14px;">&times;</a>
+                <strong style="font-size: 12px;padding-left: 45px;">Identifiant ou mot de passe incorrect !</strong>
+            </span>
+        {% endif %}
+
         <span class="login100-form-title p-b-34">
             CONNEXION
         </span>
