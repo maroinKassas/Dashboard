@@ -191,8 +191,18 @@
             </div>
         </form>
 	</div>
+{% endblock %}
 
-    <script type="text/javascript">
+{% block javaScriptsContent %}
+    <script type="text/javascript"> 
+        $(document).ready(function() {
+            var elements = document.getElementsByClassName("selected");
+            if(elements != null && elements.length != 0) {
+                elements[0].className = "notSelected";
+            } 
+            document.getElementById("utilisateurs").className = "selected";
+        })
+
         function generateRandomPassword() {
             var char = 'azertyuiopqsdfghjklmwxcvbn,;:!?./§123456789AZERTYUIOPQSDFGHJKLMWXCVBN';
             var password = '';
@@ -205,5 +215,4 @@
             document.getElementById('passwordSecond').setAttribute("value", password);
         }
     </script>
-
 {% endblock %}

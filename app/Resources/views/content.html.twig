@@ -16,18 +16,18 @@
 
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul id="active" class="nav navbar-nav side-nav">
-                        <li id="intranet"><a href="{{ path('aswo_dashboard_intranet') }}"><i class="fa fa-bullseye"></i> Intranet</a></li>
-                        <li id="serveurs"><a href="{{ path('aswo_dashboard_serveurs') }}"><i class="fa fa-tasks"></i> Serveurs</a></li>
-                        <li id="inventaire"><a href="{{ path('aswo_dashboard_inventaire') }}"><i class="fa fa-archive"></i> Inventaire</a></li>
-                        <li id="logsScans"><a href="{{ path('aswo_dashboard_logsscans') }}"><i class="fa fa-barcode"></i> Logs Scans</a></li>
-                        <li id="logsPrint"><a href="{{ path('aswo_dashboard_logsprint') }}"><i class="fa fa-print"></i> Logs Print</a></li>
+                        <li id="intranet" class="notSelected"><a href="{{ path('aswo_dashboard_intranet') }}"><i class="fa fa-bullseye"></i> Intranet</a></li>
+                        <li id="serveurs" class="notSelected"><a href="{{ path('aswo_dashboard_serveurs') }}"><i class="fa fa-tasks"></i> Serveurs</a></li>
+                        <li id="inventaire" class="notSelected"><a href="{{ path('aswo_dashboard_inventaire') }}"><i class="fa fa-archive"></i> Inventaire</a></li>
+                        <li id="logsScans" class="notSelected"><a href="{{ path('aswo_dashboard_logsscans') }}"><i class="fa fa-barcode"></i> Logs Scans</a></li>
+                        <li id="logsPrint" class="notSelected"><a href="{{ path('aswo_dashboard_logsprint') }}"><i class="fa fa-print"></i> Logs Print</a></li>
 
                         {% if is_granted("ROLE_SUPER_ADMIN") %}
-                            <li id="utilisateurs"><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-users"></i> Utilisateurs </a></li>
+                            <li id="utilisateurs" class="notSelected"><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-users"></i> Utilisateurs </a></li>
                         {% endif %}
 
-                        <li id="plannings"><a href="{{ path('aswo_dashboard_plannings') }}"><i class="fa fa-calendar"></i> Plannings </a></li>
-                        <li id="informations"><a href="{{ path('aswo_dashboard_informations') }}"><i class="fa fa-bell"></i> Informations </a></li>
+                        <li id="plannings" class="notSelected"><a href="{{ path('aswo_dashboard_plannings') }}"><i class="fa fa-calendar"></i> Plannings </a></li>
+                        <li id="informations" class="notSelected"><a href="{{ path('aswo_dashboard_informations') }}"><i class="fa fa-bell"></i> Informations </a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
@@ -71,4 +71,9 @@
         {% block loginContent %}
         {% endblock %}
     {% endif %}
+{% endblock %}
+
+{% block javaScriptsBody %}
+    {% block javaScriptsContent %}
+    {% endblock %}
 {% endblock %}

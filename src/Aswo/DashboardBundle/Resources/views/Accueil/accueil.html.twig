@@ -43,3 +43,14 @@
             </div>
         </div>
 {% endblock %}
+
+{% block javaScriptsContent %}
+    <script type="text/javascript"> 
+        $(document).ready ( function() {
+            var elements = document.getElementsByClassName("selected");
+            if(elements != null && elements.length != 0) {
+                elements[0].className = "notSelected";
+            }
+        });​
+    </script>
+{% endblock %}
