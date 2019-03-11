@@ -1,5 +1,11 @@
-aswo_userbundle_delete:
-    path:     /delete/
+aswo_userbundle_usermanager_update:
+    path:     /update
+    defaults: { _controller: AswoUserBundle:UserManager:updateUser }
+    requirements:
+        methods: "POST"
+
+aswo_userbundle_usermanager_delete:
+    path:     /delete
     defaults: { _controller: AswoUserBundle:UserManager:deleteUser }
     requirements:
-        methods: "GET"
+        methods: "POST"

@@ -7135,3 +7135,15 @@ table.tablesorter thead tr th:hover {
             transform: translateY(100px);
   }
 }
+
+.sui-grid .sui-headercell a {
+  color: white!important;
+  text-align: center;
+}
+.sui-grid-core .sui-gridheader .sui-headercell {
+  text-align: center;
+}
+
+#hidden {
+  display: none;
+}

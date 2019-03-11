@@ -12,12 +12,10 @@
 	<div class="col-lg-12">
 		<div class="row text-center">
             <div class="slide-bottom">
-                {% if message is defined and message != ''%}
-                    <div class="alert alert-success alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong> {{ message }} </strong> 
-                    </div>
-                {% endif %}
+                <div id="hidden" class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong id="message"></strong> 
+                </div>
 
                 {% if form is defined and form_errors(form.username) != null %}
                     <div class="alert alert-danger alert-dismissible">
@@ -50,7 +48,9 @@
                                     <a href="#" class="sui-link sui-unselectable" unselectable="on" tabindex="-1">Role</a>
                                 </th>
                                 <th data-field="Percent" role="columnheader" tabindex="-1" class="sui-headercell">
-                                    <div href="#" class="sui-link sui-unselectable" unselectable="on" tabindex="-1"></div>
+                                </th>
+                                <th data-field="Percent" role="columnheader" tabindex="-1" class="sui-headercell">
+                                    <a type="button" id="deleteUser" class="btn btn-danger" style="text-decoration:none;"> Supprimer </a>
                                 </th>
                             </tr>
                         </thead>
@@ -60,24 +60,29 @@
                     <table class="sui-table">
                         <tbody>
                             {% for user in users %}
-                                <tr class="sui-row" role="row">
-                                    <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.username }}</td>
-                                    <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.email }}</td>
-                                    <td role="gridcell" tabindex="-1" class="sui-cell">
-                                        {% for role in user.roles %}
-                                            {% if role == 'ROLE_SUPER_ADMIN' %} 
-                                                Admin
-                                            {% endif %}
-                                            {% if role == 'ROLE_DEFAULT' %}
-                                                Utilisateur
-                                            {% endif %}
-                                            {% set break = true %}
-                                        {% endfor %}</td>
-                                    <td role="gridcell" tabindex="-1" class="sui-cell">
-                                        <a type="button" href="/" class="btn btn-warning" style="text-decoration:none;"> Modifier </a>
-                                        <a type="button" href="{{ path("aswo_userbundle_delete", {'userName': user.username }) }}" class="btn btn-danger" style="text-decoration:none;"> Supprimer </a>
-                                    </td>
-                                </tr>
+                                {% if user.username != 'adminuser' %} 
+                                    <tr class="sui-row" role="row">
+                                        <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.username }}</td>
+                                        <td role="gridcell" tabindex="-1" class="sui-cell">{{ user.email }}</td>
+                                        <td role="gridcell" tabindex="-1" class="sui-cell">
+                                            {% for role in user.roles %}
+                                                {% if role == 'ROLE_SUPER_ADMIN' %} 
+                                                    Admin
+                                                {% endif %}
+                                                {% if role == 'ROLE_DEFAULT' %}
+                                                    Utilisateur
+                                                {% endif %}
+                                                {% set break = true %}
+                                            {% endfor %}
+                                        </td>
+                                        <td role="gridcell" tabindex="-1" class="sui-cell">
+                                            <a type="button" id="updateUser" class="btn btn-warning" style="text-decoration:none;"> Modifier </a>
+                                        </td>
+                                        <td role="gridcell" tabindex="-1" class="sui-cell">
+                                            <input class="checkbox" name="{{ user.username }}" type="checkbox">
+                                        </td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
@@ -214,5 +219,56 @@
             document.getElementById('passwordFirst').setAttribute("value", password);
             document.getElementById('passwordSecond').setAttribute("value", password);
         }
+
+        $('#updateUser').click( function(){
+            /*var username = ;
+            var email = ;
+            var role = ;
+            $.ajax({
+                url:'/update/',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "username": username,
+                    "email": email,
+                    "role": role;
+                },
+                async: true,
+                success: function (data)
+                {
+                    console.log(data)
+                    $( '#titre' ).text(data.titre);
+                    $( '#producteur' ).text(data.producteur);
+                }
+            })*/
+        });
+
+        $('#deleteUser').click( function(){
+            var names = [];
+            var index = 0;
+
+            $(".checkbox").each(function( i ) {
+                if($( this ).prop("checked")){
+                    names[index] = $( this ).attr('name');
+                    index++;
+                }
+            });
+
+            var jsonString = JSON.stringify(names);
+            
+            $.ajax({
+                url:'{{ path('aswo_userbundle_usermanager_delete') }}',
+                type: "POST",
+                data: {
+                    "names": jsonString
+                },
+                async: true,
+                success: function (data)
+                {
+                    $('#hidden').innerHTML
+                    $('#message').innerHTML = data.message;
+                }
+            })
+        });
     </script>
 {% endblock %}

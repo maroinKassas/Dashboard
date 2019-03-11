@@ -1,4 +1,13 @@
 services:
-#    aswo_user.example:
-#        class: Aswo\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    app.form.registration:
+        class: Aswo\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+    app.form.updateuser:
+        class: Aswo\UserBundle\Form\UpdateUserType
+        tags:
+            - { name: form.type, alias: app_user_update_user }
+    app.form.profile:
+        class: Aswo\UserBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }
